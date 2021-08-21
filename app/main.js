@@ -8,7 +8,7 @@ function windowResized() {
 }
 
 function preload() {
-    song = loadSound('../songs/stutter.mp3');
+    song = loadSound('../songs/masterpiece.mp3');
 }
 
 // var colors = [[255, 150, 150], [0, 0, 255], [200, 200, 10]]
@@ -37,7 +37,7 @@ function setup() {
     createCanvas(innerWidth, innerHeight);
     song.play();
     amp = new p5.Amplitude();
-    frameRate(30);
+    frameRate(25);
     stroke(255, 150, 150);
 }
 
@@ -49,13 +49,13 @@ function draw() {
 
     background(b, b, b, 240);
 
-    let f = map(amp.getLevel(), 0, 1, 0.5, 4);
+    let f = map(amp.getLevel(), 0, 1, 0.3, 9);
     strokeWeight(f);
 
     next_stems_min = Math.floor(map(amp.getLevel(), 0, 1, 0, 1));
     next_stems_max = Math.floor(map(amp.getLevel(), 0, 1, 2, 6));
 
-    multiplier = Math.floor(map(amp.getLevel(), 0, 1, 1, 4));
+    multiplier = Math.floor(map(amp.getLevel(), 0, 1, 1, 8));
 
     for (let i = 0; i < trees.length; i++){
         if (trees[i].dead == false){
@@ -69,11 +69,11 @@ function draw() {
     }
 
     record_avg = a / record.length;
-    // record_avg *= 0.9;
+    record_avg += record_avg/4;
 
     if (amp.getLevel() >= record_avg) {
         for (let i = 0; i < multiplier; i++) {
-            trees.push(new Tree(1, width/2, 30));
+            trees.push(new Tree(1, rng(300, width-300), 0));
         }
     }
 
