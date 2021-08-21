@@ -22,12 +22,12 @@ var trees = [];
         newVector.normalize();
         newVector.mult(50);
         // newVector.x = newVector.x / rng(1, 3);
-        newVector.x *= map(amp.getLevel(), 0, 1, 0.2, 0.9);
+        newVector.x *= map(amp.getLevel(), 0, 1, 0.3, 0.8);
 
         newVector.add(this.pos);
   
         distance = Math.abs(this.pos.y - 550);
-        stroke(0, 0, 255);
+        stroke(255, 255, 255);
         line(this.pos.x, this.pos.y, newVector.x, newVector.y);
         
         if (newVector.y < height){
